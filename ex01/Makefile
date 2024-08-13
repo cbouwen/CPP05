@@ -1,7 +1,7 @@
 NAME = bureaucrat
 FLAGS = -Werror -Wall -Wextra -std=c++98
 CC = c++
-SRC = main.cpp Bureaucrat.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
 all : $(NAME)
 

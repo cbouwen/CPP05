@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+class Form;
+
 class Bureaucrat
 {
     private:
@@ -44,12 +46,13 @@ class Bureaucrat
         };
 
         //Getters
-        int           getGrade() const;
-        const std::string&   getName() const;
+        int                 getGrade() const;
+        const std::string&  getName() const;
 
         //Functions
-        void                increaseGrade();
-        void                decreaseGrade();
+        void    increaseGrade();
+        void    decreaseGrade();
+        void    signForm(Form &b);
 
 };
 
