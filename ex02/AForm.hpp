@@ -1,12 +1,12 @@
-#ifndef Form_HPP
-# define Form_HPP
+#ifndef AForm_HPP
+# define AForm_HPP
 
 #include <iostream>
 #include <string>
 
 class   Bureaucrat;
 
-class Form
+class AForm
 {
     private:
         const std::string   _name;
@@ -17,23 +17,23 @@ class Form
     
     public:
         //Constructors
-        Form(const std::string name, const int signGrade, const int execGrade); 
+        AForm(const std::string name, const int signGrade, const int execGrade); 
 
         //Copy Constructor
-        Form(const Form& other);
+        AForm(const AForm& other);
 
         //Destructor
-        ~Form();
+        virtual ~AForm();
 
         //Copy assignment operator
-        Form& operator=(const Form& other);
+        AForm& operator=(const AForm& other);
 
         class GradeTooHighException : public std::exception
         {
             public:
                 const char* what() const throw()
                 {
-                    return "Grade is too high to sign this Form!";
+                    return "Grade is too high to sign this AForm!";
                 }
         };
 
@@ -42,7 +42,16 @@ class Form
             public:
                 const char* what() const throw()
                 {
-                    return "Grade is too low to sign this Form!";
+                    return "Grade is too low to sign this AForm!";
+                }
+        };
+
+        class NotSigned : public std::exception
+        {
+            public:
+                const char* what() const throw()
+                {
+                    return "Form is not signed yet!";
                 }
         };
 
@@ -53,9 +62,11 @@ class Form
         int           getExecGrade() const;
 
         void    beSigned(Bureaucrat& b);
+        void            execute(Bureaucrat const & executor) const;
+        virtual void            executeAction() const = 0;
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& b);
+std::ostream& operator<<(std::ostream& os, const AForm& b);
 
 
 
